@@ -4,6 +4,7 @@ var http = require('http'),
 
 
 function pipeAndPrint () {
+	
 	if ( urls.length === 0 ) return
 
 	http.get( urls.shift(), function ( response ) {

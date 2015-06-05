@@ -13,7 +13,7 @@ http.createServer( function(req, res) {
 		queryVal = parsedUrl.query[queryKey];
 
 	var date = new Date(queryVal),
-		resJson = {};
+		resJson;
 
 	if( route === parsetimeUrl ) {
 		resJson = {
@@ -27,7 +27,14 @@ http.createServer( function(req, res) {
 		}
 	}
 
-	res.writeHead(200, {'Content-Type': 'application/json'})
-	res.write(JSON.stringify(resJson))
+	if( resJson ) {
+		res.writeHead(200, {'Content-Type': 'application/json'})
+		res.end(JSON.stringify(resJson))
+	} else {
+		res.writeHead(404)
+		res.end()
+	}
+
+	
 
 }).listen( Number(process.argv[2]) )

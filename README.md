@@ -288,7 +288,7 @@ function pipeAndPrint () {
 pipeAndPrint(); // start recursion
 ```
 
-### 10. TIME SERVER
+## 10. TIME SERVER
 
 * To create a simple TCP server, use the `net` core module instead of the `http` core module. The server creation callback has the signature `function( socket ){}`. To start the server, let it listen to the port you want to use.
 

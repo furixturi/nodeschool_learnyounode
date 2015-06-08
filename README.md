@@ -4,7 +4,7 @@ This repository is a learning project I created along the way of doing the [lear
 
 As the new week began, to keep the fun and the challenge sweetness, as well as to let the knowledge sink in, I decided to use the README.md to take learning notes. 
 
-Hence the long text here, in the chapters' order of the workshop.
+Hence the following long notes collecting the commands and ideas I picket up, in the chapters' order of the workshop.
 
 
 

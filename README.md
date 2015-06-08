@@ -25,7 +25,7 @@ console.log('text')
 
    There is this global `process` object with an `argv` property, through which command-line arguments can be accessed, i.e. `process.argv`.
 
-   * `process.argv` is actually an array containing the complete command-line input separated with space, which means its first two elements are always `"node"` and `<program JS file name>`. Therefore, to get the command-line arguments we have to start with
+   * `process.argv` is actually an array containing the complete command-line input separated with whitespaces, which means its first two elements are always `"node"` and `<program JS file name>`. Therefore, to get the command-line arguments we have to start with
 
 	   ```javascript
 	   process.argv[2]

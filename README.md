@@ -219,3 +219,37 @@ console.log('text')
 	response.on('data', console.log)
 	```
 
+## 8. HTTP COLLECT
+
+* To collect all data from a `http.get()`, not just listen for the first `"data"` event, we can either append all the `"data"` event's response together and listen for the `"end"`event, or use a third-party package to do that for us.
+
+	E.g., using the http://npm.im/bl package:
+
+	* First, install the package with `npm`
+
+	```
+	$ npm install bl
+	```
+
+	* Then require and use it in our code
+
+	```javascript
+	var http = require('http')
+	var bl = require('bl')
+
+	http.get( 'url/to/get', function ( response ) {
+
+		response.pipe ( bl ( function ( err, data ) {
+
+			if ( err ) console.error( err )
+
+			var result = data.toString();
+
+			console.log( result.length )
+			console.log( result )
+
+		}))
+	})
+	```
+
+	The bl can have a `Stream` piped in to it and do the data collection for you. Once the stream ended, a callback with the signature `function( err, data )` will be fired with the collected data.

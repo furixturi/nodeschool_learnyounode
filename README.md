@@ -112,3 +112,32 @@ console.log('text')
 	})
 	```
 
+## 5. FILTERED LS
+
+* To read a list of file names in a given directory
+
+	```javascript
+	fs.readdir('path/to/directory', function( err, list ) {
+
+		if ( err ) console.error( err )
+
+		//do something with the list
+	})
+	```
+	The `list` is an array of file name strings.
+
+* The `path` module comes in handy for handling and transforming file paths
+
+	```javascript
+	var path = require('path')
+	```
+
+	* E.g., to get the file extention
+
+	```javascript
+	var fileNameStr = 'readme.md'
+	
+	var fileExtention = path.extname( fileNameStr )
+	// returns '.md'
+	```
+

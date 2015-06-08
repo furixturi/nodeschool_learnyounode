@@ -252,14 +252,14 @@ console.log('text')
 	})
 	```
 
-	A source `Stream` can be piped into a destination `Stream`.
+	A source `Stream` can be piped into a destination `Stream` using function `src.pipe(des)`.
 
 	Here the bl function can have a `Stream` piped in to it and do the data collection for you. Once the stream ended, a callback with the signature `function( err, data )` will be fired with the collected data.
 
 
 ## 9. JUGGLING ASYNC
 
-Here we need to ensure asynchronous callbacks to be called in the original order. My recursive solution:
+Here we need to ensure asynchronous callbacks be called in the original order. My recursive solution:
 
 ```javascript
 var http = require('http'),
@@ -290,7 +290,7 @@ pipeAndPrint(); // start recursion
 
 ### 10. TIME SERVER
 
-* To create a simple TCP server, use the `net` core module instead of the `http` core module. The server creation callback has a signature `function( socket )`. To start the server, let it listen to the port you want to use.
+* To create a simple TCP server, use the `net` core module instead of the `http` core module. The server creation callback has the signature `function( socket ){}`. To start the server, let it listen to the port you want to use.
 
 	```javascript
 	var net = require('net')
@@ -318,7 +318,7 @@ pipeAndPrint(); // start recursion
 	$ npm install strftime
 	```
 
-	To make a new date and get it in "yyyy hour:minute" format:
+	To make a new date and get it in "yyyy hh:mm" format:
 
 	```javascript
 	var strftime = require('strftime')
@@ -338,9 +338,9 @@ pipeAndPrint(); // start recursion
 	server.listen(8000)
 	```
 
-	The callback of the server creation has a signature `function( req, res )` , the two parameters are `request` and `response`, both are Node `Stream` objects.
+	The callback of the server creation has the signature `function( req, res ){}` , the two parameters are `request` and `response`, both of which are Node `Stream` objects.
 
-* To serve a file on your http server when it receives a request, use the `fs` modules streaming API's `createReadStream(path)` function, then pipe the incoming file stream in to the response stream
+* To serve a file on your http server when it receives a request, use the `fs` module's streaming API `createReadStream(path)` function, then `pipe` the incoming file stream in to the `response` stream
 
 	```javascript
 	var fs = require( 'fs' )

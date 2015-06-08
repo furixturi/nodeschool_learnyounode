@@ -19,5 +19,34 @@ $ node program.js
 console.log('text')
 ```
 
+## 2. BABY STEPS
+
+* To get command-line arguments
+
+   There is this global `process` object with an `argv` property, through which command-line arguments can be accessed, i.e. `process.argv`.
+
+   * `process.argv` is actually an array containing the complete command-line input separated with space, which means its first two elements are always `"node"` and `<program JS file name>`. Therefore, to get the command-line arguments we have to start with
+
+	   ```javascript
+	   process.argv[2]
+	   ```
 
 
+	   To keep it dynamic I sliced it like this:
+
+
+	   ```javascript
+	   var arguments = process.argv.slice(2);
+	   ```
+
+	* Also be careful that the arguments you got from `process.argv` are all strings. You have to parse them before using, e.g. for numbers:
+
+		```javascript
+		var numberArg = Number(process.argv[2])
+		```
+
+		or
+
+		```javascript
+		var numberArg = +(process.argv[2])
+		```

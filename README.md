@@ -253,3 +253,75 @@ console.log('text')
 	```
 
 	The bl can have a `Stream` piped in to it and do the data collection for you. Once the stream ended, a callback with the signature `function( err, data )` will be fired with the collected data.
+
+
+## 9. JUGGLING ASYNC
+
+Here we need to ensure asynchronous callbacks to be called in the original order. My recursive solution:
+
+```javascript
+var http = require('http'),
+	bl = require('bl'),
+	urls = process.argv.slice(2);
+
+
+function pipeAndPrint () {
+	
+	if ( urls.length === 0 ) return // edge case to stop everything
+
+	http.get( urls.shift(), function ( response ) { // use shift() to drain the array slowly
+
+		response.pipe( bl( function( err, data ) { // pipe response stream into bl package
+
+			if( err ) console.error( err )
+
+			console.log( data.toString() );
+
+			pipeAndPrint(); // call itself recursively
+
+		}))
+	})
+}
+
+pipeAndPrint(); // start recursion
+```
+
+### 10. TIME SERVER
+
+* To create a simple TCP server, use the `net` core module instead of the `http` core module. The server creation callback has a signature `function( socket )`. To start the server, let it listen to the port you want to use.
+
+	```javascript
+	var net = require('net')
+	
+	var server = net.createServer( function ( socket ) {
+		// do something with socket
+	})
+	server.listen( 8000 )
+	```
+
+* The socket is also a Node `Stream` which can be both read from and written to. To just write data and close the socket:
+
+	```javascript
+	// require net module etc...
+	var server = net.createServer ( function ( socket ) {
+
+		socket.end( 'something' )
+	})
+	server.listen( 8000 )
+	```
+
+* One handy package to handle date is the `strftime` package from npm
+
+	```
+	$ npm install strftime
+	```
+
+	To make a new date and get it in "yyyy hour:minute" format:
+
+	```javascript
+	var strftime = require('strftime')
+
+	console.log( strftime ( '%F %H:%M' ))
+	```
+
+	

@@ -143,7 +143,7 @@ console.log('text')
 
 ## 6. MAKE IT MODULAR
 
-* To create a new module of one function, create a new JS file and write the function in `module.exports`
+* To create a new module of e.g. a single function, create a new JS file and write the function in `module.exports`
 
 	```javascript
 	/* in the module JS file mymodule.js */
@@ -163,7 +163,7 @@ console.log('text')
 	myModule( myArg );
 	```
 
-* It is idiomatic to check for errors and do early-returns in callback functions. If your module takes a callback
+* It is idiomatic to check for errors and do early-returns in callback functions. If your module takes a callback, you can do it as follows:
 
 	```javascript
 	module.exports = function ( args, callback ) {

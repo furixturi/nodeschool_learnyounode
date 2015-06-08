@@ -252,7 +252,9 @@ console.log('text')
 	})
 	```
 
-	The bl can have a `Stream` piped in to it and do the data collection for you. Once the stream ended, a callback with the signature `function( err, data )` will be fired with the collected data.
+	A source `Stream` can be piped into a destination `Stream`.
+
+	Here the bl function can have a `Stream` piped in to it and do the data collection for you. Once the stream ended, a callback with the signature `function( err, data )` will be fired with the collected data.
 
 
 ## 9. JUGGLING ASYNC
@@ -324,4 +326,34 @@ pipeAndPrint(); // start recursion
 	console.log( strftime ( '%F %H:%M' ))
 	```
 
+## 11. HTTP FILE SERVER
+
+* To create a http server, use the `http` core module, create the server, then let the server listen on a port to start it.
 	
+	```javascript
+	var http = require( 'http' )
+	var server = http.createServer( function ( req, res ) {
+		// handle request
+	})
+	server.listen(8000)
+	```
+
+	The callback of the server creation has a signature `function( req, res )` , the two parameters are `request` and `response`, both are Node `Stream` objects.
+
+* To serve a file on your http server when it receives a request, use the `fs` modules streaming API's `createReadStream(path)` function, then pipe the incoming file stream in to the response stream
+
+	```javascript
+	var fs = require( 'fs' )
+	var http = require( 'http' )
+
+	http.createServer( function ( req, res ) {
+
+		res.writeHead(200, {'content-type': 'text/plain'})
+	
+		fs.createReadStream( 'path/to/file/to/serve' ).pipe( res )
+	
+	}).listen( 8000 )
+	```
+
+## 12. HTTP UPPERCASER
+

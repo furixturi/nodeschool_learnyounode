@@ -357,13 +357,13 @@ pipeAndPrint(); // start recursion
 
 ## 12. HTTP UPPERCASER
 
-* To transform stream data as it's passing through, you can use the `through2-map` npm package. Its `map(function (chunk) {})` function takes a chunk of data, allows you to manipulate it inside the callback, then returns the result as a chunk of data. It works like `Array#map()` for streams.
+* To transform stream data as it's passing through, you can use the `through2-map` npm package. Its `map()` function takes a chunk of data, allows you to manipulate it inside the callback, then returns the result as a chunk of data. It works like `Array#map()` for streams.
 
 	```
 	$ npm install through2-map
 	```
 
-	E.g. to reverse the incoming stream:
+	E.g. to reverse all the characters in an incoming stream:
 
 	```javascript
 	var map = require('through2-map')
@@ -377,12 +377,14 @@ pipeAndPrint(); // start recursion
 
 ## 13. HTTP JSON API SERVER
 
-* To parse a URL and query string, use `url` core module
+* To parse a URL (possibly with a query strin), use the `url` core module
 
 	```javascript
 	var url = require('url')
 
-	url.parse( request.url, true ) // the second argument states for "also parse query string (using the "querystring" module), defaults to false, we set it to true
+	url.parse( request.url, true ) 
+	// the second argument states for "also parse query string (using the "querystring" module) 
+	// it defaults to false, here we set it to true
 	```
 
 	* Try it in command line:
@@ -391,9 +393,9 @@ pipeAndPrint(); // start recursion
 	$ node -pe "require('url').parse('/test?q=1', true)"
 	```
 
-	An JS object with all interesting information about the URL is shown in key-value pairs
+	An JS object with all the interesting information about the URL will be returned in key-value pairs
 
-	```JSON
+	```javascript
 	{ protocol: null,
 	  slashes: null,
 	  auth: null,
@@ -408,9 +410,10 @@ pipeAndPrint(); // start recursion
 	  href: '/test?q=1' }
 	```
 
-	Checking `pathname` and `query` you can build a simple routing logic to serve different things up from your http server
+	By inspecting the `pathname` and `query` values you can build simple routing logics and serve different content from your http server
 
-* To send a JSON object to response, use `JSON.stringify()`
+* To send a JSON object to the response stream, use `JSON.stringify()`.
+
 	Also, always set the Content-Type properly
 
 	```javascript

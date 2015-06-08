@@ -198,7 +198,7 @@ console.log('text')
 	})
 	```
 
-	* The response is a Node `Stream` object, it emits events. The most interesting events are `"data"`, `"error"`, and `"end"`. Use them as follows:
+	* The response is a Node `Stream` object which emits events. The most interesting events are `"data"`, `"error"`, and `"end"`. Use them as follows:
 
 	```javascript
 	http.get( 'url/to/get', function ( response ) {
@@ -215,8 +215,7 @@ console.log('text')
 
 	```javascript
 	response.setEncoding('utf8')
-
+	//then it can be handled as a string
 	response.on('data', console.log)
 	```
 
-	

@@ -338,7 +338,7 @@ pipeAndPrint(); // start recursion
 	server.listen(8000)
 	```
 
-	The callback of the server creation has the signature `function( req, res ){}` , the two parameters are `request` and `response`, both of which are Node `Stream` objects.
+	The callback of the server creation has the signature `function( req, res ){}` , the two parameters are the http `request` and `response`, both of which are Node `Stream` objects.
 
 * To serve a file on your http server when it receives a request, use the `fs` module's streaming API `createReadStream(path)` function, then `pipe` the incoming file stream in to the `response` stream
 

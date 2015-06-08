@@ -183,3 +183,40 @@ console.log('text')
 	}
 	```
 
+## 7. HTTP CLIENT
+
+* To use the `http` core module
+	
+	```javascript
+	var http = require('http')
+	```
+	* To use the simple `get()` method of the `http` core module
+
+	```javascript
+	http.get( 'url/to/get', function ( response ) {
+		// do things with response
+	})
+	```
+
+	* The response is a Node `Stream` object, it emits events. The most interesting events are `"data"`, `"error"`, and `"end"`. Use them as follows:
+
+	```javascript
+	http.get( 'url/to/get', function ( response ) {
+
+		response.on('data', function( data ) {
+
+		})
+
+		response.on('error', console.error)
+	})
+	```
+
+	* By using `setEncoding('utf8')` on the `response` object, the `Stream` object is automatically converted to string
+
+	```javascript
+	response.setEncoding('utf8')
+
+	response.on('data', console.log)
+	```
+
+	

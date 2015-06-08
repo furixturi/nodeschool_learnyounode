@@ -80,3 +80,33 @@ console.log('text')
 	//there's no newline character at the end of the sample file in this exercise
 	```
 
+## 4. MY FIRST ASYNC I/O
+
+* To read a file asynchronously
+
+	```javascript
+
+	var fileBuffer; 
+
+	fs.readFile( 'path/to/file', function( err, data ) {
+
+		if( err ) console.error( err );
+
+		fileBuffer = data;
+	})
+	```
+
+* You can supply 'utf8' as the second argument in the function above and the returned data will be automatically converted to a string
+
+	```javascript
+	
+	var fileStr; 
+
+	fs.readFile( 'path/to/file', 'utf8', function( err, data ){
+	
+		if( err ) console.error( err );
+
+		fileStr = data;
+	})
+	```
+

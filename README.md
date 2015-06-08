@@ -7,4 +7,17 @@ As the new week began, to keep the fun and the challenge sweetness, as well as t
 Hence the following long notes collecting the commands and ideas I've picked up, in the chapters' order of the workshop.
 
 
+## 1. HELLO WORLD
+
+* To run a node JS program
+```
+$ node program.js
+```
+
+* To write to the standard output in node
+```javascript
+console.log('text')
+```
+
+
 

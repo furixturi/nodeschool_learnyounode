@@ -124,9 +124,9 @@ console.log('text')
 		//do something with the list
 	})
 	```
-	The `list` is an array of file name strings.
+	The `list` is an array of file name `strings`.
 
-* The `path` module comes in handy for handling and transforming file paths
+* The `path` module comes in handy when handling and transforming file paths
 
 	```javascript
 	var path = require('path')
@@ -139,5 +139,47 @@ console.log('text')
 	
 	var fileExtention = path.extname( fileNameStr )
 	// returns '.md'
+	```
+
+## 6. MAKE IT MODULAR
+
+* To create a new module of one function, create a new JS file and write the function in `module.exports`
+
+	```javascript
+	/* in the module JS file mymodule.js */
+
+	module.exports = function ( args ) {
+		// do something
+	}
+	```
+	
+	This module can then be used in another Node JS program by requiring it with its path
+
+	```javascript
+	/* in the program JS file */
+
+	var myModule = require('./mymodule.js') //Here the '.js' is optional
+
+	myModule( myArg );
+	```
+
+* It is idiomatic to check for errors and do early-returns in callback functions. If your module takes a callback
+
+	```javascript
+	module.exports = function ( args, callback ) {
+
+		foo ( /* <use the args here, maybe>, */ function ( err, data ) {
+
+			if ( err ) return callback ( err )
+
+			// do things with data
+			// ...
+
+			// first argument of a callback is normally an error, so pass null if there is none
+
+			callback ( null, data ) 
+		})
+
+	}
 	```
 

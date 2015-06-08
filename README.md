@@ -357,3 +357,86 @@ pipeAndPrint(); // start recursion
 
 ## 12. HTTP UPPERCASER
 
+* To transform stream data as it's passing through, you can use the `through2-map` npm package. Its `map(function (chunk) {})` function takes a chunk of data, allows you to manipulate it inside the callback, then returns the result as a chunk of data. It works like `Array#map()` for streams.
+
+	```
+	$ npm install through2-map
+	```
+
+	E.g. to reverse the incoming stream:
+
+	```javascript
+	var map = require('through2-map')
+
+	inStream.pipe( map( function (chunk) {
+
+		return chunk.toString().split('').reverse().join('')
+
+	} ) ).pipe(outStream)
+	```
+
+## 13. HTTP JSON API SERVER
+
+* To parse a URL and query string, use `url` core module
+
+	```javascript
+	var url = require('url')
+
+	url.parse( request.url, true ) // the second argument states for "also parse query string (using the "querystring" module), defaults to false, we set it to true
+	```
+
+	* Try it in command line:
+
+	```
+	$ node -pe "require('url').parse('/test?q=1', true)"
+	```
+
+	An JS object with all interesting information about the URL is shown in key-value pairs
+
+	```JSON
+	{ protocol: null,
+	  slashes: null,
+	  auth: null,
+	  host: null,
+	  port: null,
+	  hostname: null,
+	  hash: null,
+	  search: '?q=1',
+	  query: { q: '1' },
+	  pathname: '/test',
+	  path: '/test?q=1',
+	  href: '/test?q=1' }
+	```
+
+	Checking `pathname` and `query` you can build a simple routing logic to serve different things up from your http server
+
+* To send a JSON object to response, use `JSON.stringify()`
+	Also, always set the Content-Type properly
+
+	```javascript
+	if ( resJSON ) {
+
+		res.writeHead(200, { 'Content-Type': 'application/json' })
+		res.end(JSON.stringify( resJSON ))
+
+	} else {
+
+		res.writeHead(404)
+		res.end()
+	
+	}
+	```
+
+* The JS `Date` works well with ISO format
+	
+	```javascript
+	new Date().toISOString() //'2015-06-08T15:48:17.962Z'
+
+	new Date('2015-06-08T15:48:17.962Z')
+	```
+	To get unix time (the number of milliseconds since 1 Jan 1970 00:00:00 UTC)
+	
+	```javascript
+	new Date().getTime() // 1433778539409
+	```
+

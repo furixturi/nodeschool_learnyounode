@@ -51,7 +51,7 @@ console.log('text')
 		var numberArg = +(process.argv[2])
 		```
 
-### 3. MY FIRST I/O
+## 3. MY FIRST I/O
 
 * To perform a filesystem operation, we need the `fs` module
 
@@ -69,14 +69,14 @@ console.log('text')
 
 	* To convert the file Buffer object we've got earlier to string
 
-	```javascript
-	var fileStr = fileBuffer.toString()
-	```
+		```javascript
+		var fileStr = fileBuffer.toString()
+		```
 
-* To count new line characters (`\n`) in the file that converted to string
+* To count new line characters (`"\n"`) in the file that we just read in and converted to string
 	
 	```javascript
-	var numNewLine = fileStr.split('\n').length - 1 //there's no newline character at the end of the sample file in this exercise
+	var numNewLine = fileStr.split('\n').length - 1 
+	//there's no newline character at the end of the sample file in this exercise
 	```
 
-	

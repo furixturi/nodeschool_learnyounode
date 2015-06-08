@@ -82,7 +82,9 @@ console.log('text')
 
 ## 4. MY FIRST ASYNC I/O
 
-* To read a file asynchronously
+* To read a file asynchronously, we use the asynchronous counterpart of the `fs.readFileSync()` function, also in the `fs` module. 
+
+	Instead of receiving its return value as data, we gain the data in a callback that we provide as the second parameter, with the signature  `function( err, data )()` 
 
 	```javascript
 
@@ -96,14 +98,14 @@ console.log('text')
 	})
 	```
 
-* You can supply 'utf8' as the second argument in the function above and the returned data will be automatically converted to a string
+* You can also supply 'utf8' as the second argument and put the callback as the third parameter, in this way the returned data will be automatically converted to a string
 
 	```javascript
 	
 	var fileStr; 
 
 	fs.readFile( 'path/to/file', 'utf8', function( err, data ){
-	
+
 		if( err ) console.error( err );
 
 		fileStr = data;
